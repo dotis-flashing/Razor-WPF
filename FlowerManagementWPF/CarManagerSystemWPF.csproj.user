@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="AdminManagerProfileCustomer.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AdminManagerWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="CustomerManagerWPF.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="CustomerProfileWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ManagerCarWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ManuFactureManagerWindo.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="RentingTransactionWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="SupplierManagerWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="TransactionHistoryWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="AdminManagerProfileCustomer.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AdminManagerWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CustomerManagerWPF.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CustomerProfileWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ManagerCarWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ManuFactureManagerWindo.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="RentingTransactionWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="SupplierManagerWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TransactionHistoryWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

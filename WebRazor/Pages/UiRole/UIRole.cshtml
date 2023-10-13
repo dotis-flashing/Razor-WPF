@@ -1,0 +1,41 @@
+﻿@page "/uirole"
+@model WebRazor.Pages.UiRole.UIRoleModel
+@{
+    var role = HttpContext.Session.GetString("role");
+    var name = HttpContext.Session.GetString("customerId");
+}
+<style>
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+</style>
+@if (role == "admin")
+{
+    <h1>Welcome, Admin</h1>
+    <p>You have administrative privileges.</p>
+
+    <div class="button-container">
+        <a href="/Customer/Index" class="btn btn-primary">Manage Customers</a>
+        <a href="/Manufacture/Index" class="btn btn-primary">Manage Manufacture</a>
+        <a href="/CarInfor/Index" class="btn btn-primary">Manage CarInformation</a>
+        <a href="/Suppiler/Index" class="btn btn-primary">Manage Suppiler</a>
+    </div>
+}
+else if (role == "customer")
+{
+    
+    <h1>Welcome, @name!</h1>
+    <div class="button-container">
+        <a href="/ProfileCustomer/Customer/ProfileCustomer?id=@name" class="btn btn-primary">Profile Customers</a>
+        <a href="/Manufacture/Index" class="btn btn-primary">Manage Manufacture</a>
+        <a href="/RentingTransaction/Index" class="btn btn-primary">Manage RentingTransaction</a>
+    </div>
+}
+else
+{
+    <h1>Welcome, Guest!</h1>
+    <p>Please log in to access the main page.</p>
+    <a href="/login" class="btn btn-primary">Go to Login</a>
+}
