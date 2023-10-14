@@ -20,6 +20,11 @@ namespace Repository.Repository.Imp
             return rentingId;
         }
 
+        public List<RentingDetail> GetByIds(int id)
+        {
+            return _context.Set<RentingDetail>().Include(c => c.RentingTransaction).Include(c => c.Car).Where(c=>c.RentingTransaction.CustomerId == id).ToList();
+        }
+
         public List<RentingDetail> GetRentingDetailsAll()
         {
             return _context.Set<RentingDetail>().Include(c => c.RentingTransaction).Include(c => c.Car).ToList();

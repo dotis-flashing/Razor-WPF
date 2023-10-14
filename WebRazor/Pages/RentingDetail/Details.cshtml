@@ -3,6 +3,9 @@
 
 @{
     ViewData["Title"] = "Details";
+    var name = HttpContext.Session.GetString("customerId");
+    var detailPage = "/RentingDetail/Index";
+
 }
 
 <h1>Details</h1>
@@ -50,6 +53,5 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="@detailPage" asp-route-id="@name">Back to List</a>
 </div>

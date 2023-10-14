@@ -8,6 +8,6 @@ namespace Repository.Repository
     {
         List<RentingDetail> GetRentingDetailsAll();
         RentingDetail GetById(int id);
-
+        List<RentingDetail> GetByIds(int id);
     }
 }

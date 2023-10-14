@@ -38,6 +38,22 @@ namespace Infrastructure.Service.Implement
             return _unitOfWork.RentingDetailRepository.GetRentingDetailsAll();
         }
 
+        public RentingDetail GetListRentingBy(int id)
+        {
+            return _unitOfWork.RentingDetailRepository.GetById(id);
+        }
+
+        public List<RentingDetail> GetListRentingByCustomerId(int id)
+        {
+            return _unitOfWork.RentingDetailRepository.GetByIds(id);
+        }
+
+        public RentingDetail GetListRentingById(int id)
+        {
+            return _unitOfWork.RentingDetailRepository.GetById(id);
+
+        }
+
         public RentingDetail Update(int id, RentingDetail renting)
         {
             var ren = _unitOfWork.RentingDetailRepository.GetById(id);

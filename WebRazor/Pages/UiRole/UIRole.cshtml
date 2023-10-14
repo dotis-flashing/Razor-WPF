@@ -13,7 +13,7 @@
 </style>
 @if (role == "admin")
 {
-    <h1>Welcome, Admin</h1>
+    <h1>Welcome, Admin</h1> <a href="/Login/LoginPage" class="btn btn-primary">Log Out</a>
     <p>You have administrative privileges.</p>
 
     <div class="button-container">
@@ -25,11 +25,12 @@
 }
 else if (role == "customer")
 {
-    
-    <h1>Welcome, @name!</h1>
+
+    <h1>Welcome, @name!</h1> <a href="/Login/LoginPage" class="btn btn-primary">Log Out</a>
+
     <div class="button-container">
         <a href="/ProfileCustomer/Customer/ProfileCustomer?id=@name" class="btn btn-primary">Profile Customers</a>
-        <a href="/Manufacture/Index" class="btn btn-primary">Manage Manufacture</a>
+        <a href="/RentingDetail/Index?id=@name" class="btn btn-primary">Manage RentingDetail</a>
         <a href="/RentingTransaction/Index" class="btn btn-primary">Manage RentingTransaction</a>
     </div>
 }

@@ -26,7 +26,6 @@ namespace WebRazor.Pages.RentingTransaction
         public List<BusinessObjects.Entity.CarInformation> CarInformation { get; set; } = default!;
         public IActionResult OnGet()
         {
-
             var customerJson = HttpContext.Session.GetString("customerId");
             if (customerJson != null)
             {
@@ -54,7 +53,9 @@ namespace WebRazor.Pages.RentingTransaction
             RentingDetail = new BusinessObjects.Entity.RentingDetail
             {
                 RentingTransactionId = RentingTransaction.RentingTransationId,
-                CarId= RentingDetail.CarId
+                CarId= RentingDetail.CarId,
+                Price= RentingDetail.Price,
+                
             };
             RentingDetail = _detailService.Add(RentingDetail);  
             RentingTransaction.CustomerId = Customer.CustomerId;

@@ -1,29 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using BusinessObjects.Entity;
+using Infrastructure.Service;
 
 namespace WebRazor.Pages.RentingDetail
 {
     public class IndexModel : PageModel
     {
-        private readonly BusinessObjects.Entity.FUCarRentingManagementContext _context = new FUCarRentingManagementContext();
-      
+        private readonly IRentingDetailService rentingDetailService;
 
-        public IList<BusinessObjects.Entity.RentingDetail> RentingDetail { get;set; } = default!;
-
-        public async Task OnGetAsync()
+        public IndexModel(IRentingDetailService rentingDetailService)
         {
-            if (_context.RentingDetails != null)
+            this.rentingDetailService = rentingDetailService;
+        }
+
+        public List<BusinessObjects.Entity.RentingDetail> RentingDetail { get; set; } = default!;
+
+        public async Task OnGetAsync(int id)
+        {
+            try
             {
-                RentingDetail = await _context.RentingDetails
-                .Include(r => r.Car)
-                .Include(r => r.RentingTransaction).ToListAsync();
+
+                var customer = HttpContext.Session.GetString("customerId");
+                if (customer != null)
+                {
+                    var customerId = int.Parse(customer);
+                    RentingDetail = rentingDetailService.GetListRentingByCustomerId(id);
+                }
             }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+
         }
     }
 }

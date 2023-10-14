@@ -3,13 +3,13 @@
 
 @{
     ViewData["Title"] = "Index";
+    var name = HttpContext.Session.GetString("customerId");
+
+    var detailPage = "/RentingDetail/Details";
 }
 
-<h1>Index</h1>
+<h1>RentingDetail</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -44,7 +44,7 @@
                 @Html.DisplayFor(modelItem => item.EndDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                    @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RentingDetailStatus)
@@ -53,14 +53,15 @@
                 @Html.DisplayFor(modelItem => item.Car.CarName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RentingTransaction.RentingStatus)
+                    @Html.DisplayFor(modelItem => item.RentingTransaction.RentingTransationId)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    <a asp-page="@detailPage" asp-route-id="@item.RentingTransaction.RentingTransationId">Details</a> |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }
     </tbody>
+    <a href="/uirole" class="btn btn-primary">Back</a>
+
 </table>
