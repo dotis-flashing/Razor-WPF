@@ -8,7 +8,13 @@ namespace WebRazor.Pages.RentingTransaction
 {
     public class IndexModel : PageModel
     {
-        private readonly IRentingTransactionService _rentingTransactionService = new RentingTransactionService();
+        private readonly IRentingTransactionService _rentingTransactionService ;
+
+        public IndexModel(IRentingTransactionService rentingTransactionService)
+        {
+            _rentingTransactionService = rentingTransactionService;
+        }
+
         [BindProperty]
         public List<BusinessObjects.Entity.RentingTransaction> RentingTransaction { get; set; } = default!;
 

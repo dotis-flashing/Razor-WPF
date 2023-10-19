@@ -6,7 +6,12 @@ namespace WebRazor.Pages.ProfileCustomer.Renting
 {
     public class RentingCustomerModel : PageModel
     {
-        private readonly IRentingTransactionService _rentingTransactionService = new RentingTransactionService();
+        private readonly IRentingTransactionService _rentingTransactionService;
+
+        public RentingCustomerModel(IRentingTransactionService rentingTransactionService)
+        {
+            _rentingTransactionService = rentingTransactionService;
+        }
 
         public List<BusinessObjects.Entity.RentingTransaction> RentingTransaction { get; set; } = default!;
 

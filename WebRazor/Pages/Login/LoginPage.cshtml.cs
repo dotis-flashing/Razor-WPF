@@ -18,13 +18,17 @@ namespace WebRazor.Pages
         public string Password { get; set; }
 
 
-        ICustomerService _customerService;
+        private readonly ICustomerService _customerService;
+
+        public LoginPageModel(ICustomerService customerService)
+        {
+            _customerService = customerService;
+        }
 
         public IActionResult OnPost()
         {
             try
             {
-                _customerService = new CustomerService();
                 if (!ModelState.IsValid)
                 {
                     return Page();

@@ -13,7 +13,12 @@ namespace WebRazor.Pages.Suppiler
 {
     public class CreateModel : PageModel
     {
-        private readonly ISupplierService _supplierService = new SupplerService();
+        private readonly ISupplierService _supplierService;
+
+        public CreateModel(ISupplierService supplierService)
+        {
+            _supplierService = supplierService;
+        }
 
         public IActionResult OnGet()
         {

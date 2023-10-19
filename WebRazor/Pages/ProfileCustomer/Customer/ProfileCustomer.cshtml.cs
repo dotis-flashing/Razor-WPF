@@ -7,7 +7,13 @@ namespace WebRazor.Pages.ProfileCustomer.Customer
 {
     public class ProfileCustomerModel : PageModel
     {
-        private readonly ICustomerService _customerService = new CustomerService();
+        private readonly ICustomerService _customerService;
+
+        public ProfileCustomerModel(ICustomerService customerService)
+        {
+            _customerService = customerService;
+        }
+
         [BindProperty]
         public BusinessObjects.Entity.Customer Customer { get; set; } = default!;
 

@@ -8,8 +8,12 @@ namespace WebRazor.Pages.Suppiler
 {
     public class DeleteModel : PageModel
     {
-        private readonly ISupplierService _supplierService = new SupplerService();
+        private readonly ISupplierService _supplierService;
 
+        public DeleteModel(ISupplierService supplierService)
+        {
+            _supplierService = supplierService;
+        }
 
         [BindProperty]
         public Supplier Supplier { get; set; } = default!;

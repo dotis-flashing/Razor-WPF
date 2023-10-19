@@ -11,7 +11,7 @@ namespace WebRazor.Pages.RentingDetail
 {
     public class DeleteModel : PageModel
     {
-        private readonly BusinessObjects.Entity.FUCarRentingManagementContext _context = new FUCarRentingManagementContext();
+        private readonly BusinessObjects.Entity.FUCarRentingManagementContext _context ;
 
 
 

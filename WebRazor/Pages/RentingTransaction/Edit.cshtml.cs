@@ -6,7 +6,12 @@ namespace WebRazor.Pages.RentingTransaction
 {
     public class EditModel : PageModel
     {
-        private readonly IRentingTransactionService _transactionService = new RentingTransactionService();
+        private readonly IRentingTransactionService _transactionService ;
+
+        public EditModel(IRentingTransactionService transactionService)
+        {
+            _transactionService = transactionService;
+        }
 
         [BindProperty]
         public BusinessObjects.Entity.RentingTransaction RentingTransaction { get; set; } = default!;

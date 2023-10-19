@@ -11,8 +11,12 @@ namespace WebRazor.Pages.Suppiler
 {
     public class DetailsModel : PageModel
     {
-        private readonly ISupplierService _supplierService = new SupplerService();
+        private readonly ISupplierService _supplierService;
 
+        public DetailsModel(ISupplierService supplierService)
+        {
+            _supplierService = supplierService;
+        }
 
         public Supplier Supplier { get; set; } = default!;
 

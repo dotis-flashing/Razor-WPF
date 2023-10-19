@@ -1,15 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using BusinessObjects.Entity;
-using Infrastructure.Service.Implement;
 using Infrastructure.Service;
 
 namespace WebRazor.Pages.Suppiler
 {
     public class EditModel : PageModel
     {
-        private readonly ISupplierService _supplierService = new SupplerService();
+        private readonly ISupplierService _supplierService;
 
+        public EditModel(ISupplierService supplierService)
+        {
+            _supplierService = supplierService;
+        }
 
         [BindProperty]
         public Supplier Supplier { get; set; } = default!;
