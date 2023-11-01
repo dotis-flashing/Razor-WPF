@@ -14,7 +14,12 @@ namespace WebRazor.Pages.Manufacture
 {
     public class EditModel : PageModel
     {
-        private readonly IManuFactureService _manuFactureService = new ManufactureService();
+        private readonly IManuFactureService _manuFactureService;
+
+        public EditModel(IManuFactureService manuFactureService)
+        {
+            _manuFactureService = manuFactureService;
+        }
 
         [BindProperty]
         public Manufacturer Manufacturer { get; set; } = default!;

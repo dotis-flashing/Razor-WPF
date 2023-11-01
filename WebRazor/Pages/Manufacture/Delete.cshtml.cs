@@ -13,7 +13,12 @@ namespace WebRazor.Pages.Manufacture
 {
     public class DeleteModel : PageModel
     {
-        private readonly IManuFactureService _manuFactureService = new ManufactureService();
+        private readonly IManuFactureService _manuFactureService;
+
+        public DeleteModel(IManuFactureService manuFactureService)
+        {
+            _manuFactureService = manuFactureService;
+        }
 
         [BindProperty]
         public Manufacturer Manufacturer { get; set; } = default!;

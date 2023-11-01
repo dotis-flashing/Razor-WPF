@@ -5,9 +5,11 @@
     ViewData["Title"] = "Details";
     var name = HttpContext.Session.GetString("customerId");
     var detailPage = "/RentingDetail/Index";
+    var role = HttpContext.Session.GetString("role");
 
 }
-
+@if (role == "customer")
+{
 <h1>Details</h1>
 
 <div>
@@ -55,3 +57,4 @@
 <div>
     <a asp-page="@detailPage" asp-route-id="@name">Back to List</a>
 </div>
+}

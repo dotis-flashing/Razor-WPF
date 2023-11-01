@@ -10,9 +10,9 @@ namespace Infrastructure.Service.Implement
     {
         private readonly IUnitofWork _unitOfWork;
 
-        public RentingDetailServiceImp()
+        public RentingDetailServiceImp(IUnitofWork unitOfWork)
         {
-            _unitOfWork = new UnitofWork(new FUCarRentingManagementContext());
+            _unitOfWork = unitOfWork;
         }
 
         public RentingDetail Add(RentingDetail renting)

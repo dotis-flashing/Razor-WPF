@@ -14,9 +14,9 @@ namespace Infrastructure.Service.Implement
     {
         private readonly IUnitofWork _unitofWork;
 
-        public ManufactureService()
+        public ManufactureService(IUnitofWork unitofWork)
         {
-            _unitofWork = new UnitofWork(new FUCarRentingManagementContext());
+            _unitofWork = unitofWork;
         }
 
         public Manufacturer AddManu(Manufacturer manufacturer)

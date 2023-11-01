@@ -7,7 +7,13 @@ namespace WebRazor.Pages.Customer
 {
     public class EditModel : PageModel
     {
-        private readonly ICustomerService _customerService = new CustomerService();
+        private readonly ICustomerService _customerService;
+
+        public EditModel(ICustomerService customerService)
+        {
+            _customerService = customerService;
+        }
+
         [BindProperty]
         public BusinessObjects.Entity.Customer Customer { get; set; } = default!;
 
@@ -30,7 +36,8 @@ namespace WebRazor.Pages.Customer
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message.ToString());
+                ViewData["Message"] = ex.Message.ToString();
+                return Page();
             }
         }
 

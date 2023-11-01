@@ -1,16 +1,18 @@
-using Infrastructure.Service;
+﻿
 using Infrastructure.Service.Implement;
-using WebRazor.Pages;
+using WebRazor;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 //builder.Services.AddDJ();
-
+var configuration = new ConfigurationBuilder()
+.SetBasePath(builder.Environment.ContentRootPath)
+.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+.Build();
+builder.Services.AddDJ(configuration);
 builder.Services.AddRazorPages();
-//builder.Services.AddScoped<IRentingTransactionService, RentingTransactionService>();
-builder.Services.AddDJ();
 builder.Services.AddDistributedMemoryCache();
-builder.Services.AddSingleton(builder.Services.AddDJ());
+builder.Services.AddSingleton(builder.Services.AddDJ(configuration));
 builder.Services.AddSession(
 //    options =>
 //{
@@ -37,5 +39,9 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
-
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapRazorPages();
+    endpoints.MapHub<CustomerHub>("/customerHub"); // Điều này khai báo một endpoint SignalR
+});
 app.Run();

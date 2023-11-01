@@ -13,13 +13,14 @@ namespace FlowerManagementWPF
     {
         private readonly ISupplierService _supplierService;
         private readonly IManuFactureService _manuFactureService;
-        public SupplierManagerWindow(ISupplierService supplierService)
+      
+
+        public SupplierManagerWindow(ISupplierService supplierService, IManuFactureService manuFactureService)
         {
             InitializeComponent();
             _supplierService = supplierService;
-            _manuFactureService = new ManufactureService();
+            _manuFactureService = manuFactureService;
             LoadData();
-
         }
 
         private void LoadData()

@@ -17,21 +17,22 @@ namespace FlowerManagementWPF
         private readonly ISupplierService _supplierService;
         private readonly ICarService _carService;
         private readonly IManuFactureService _manuFactureService;
-        
 
-        public ManagerCarWindow()
+        public ManagerCarWindow(ISupplierService supplierService, ICarService carService, IManuFactureService manuFactureService)
         {
             InitializeComponent();
-            _supplierService = new SupplerService();
-            _carService = new CarServiceImpl();
-            _manuFactureService = new ManufactureService();
+            _supplierService = supplierService;
+            _carService = carService;
+            _manuFactureService = manuFactureService;
             LoadData();
+
         }
+
 
 
         private void btnAddSupplier_Click(object sender, RoutedEventArgs e)
         {
-            SupplierManagerWindow supp = new SupplierManagerWindow(_supplierService);
+            SupplierManagerWindow supp = new SupplierManagerWindow(_supplierService, _manuFactureService);
             supp.Show();
         }
 

@@ -3,8 +3,11 @@
 
 @{
     ViewData["Title"] = "Create";
-}
+    var role = HttpContext.Session.GetString("role");
 
+}
+@if (role == "admin")
+{
 <h1>Create</h1>
 
 <h4>Supplier</h4>
@@ -41,4 +44,5 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 }

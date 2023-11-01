@@ -8,9 +8,9 @@ namespace Infrastructure.Service.Implement
     {
         private readonly IUnitofWork _unitOfWork;
 
-        public RentingTransactionService()
+        public RentingTransactionService(IUnitofWork unitOfWork)
         {
-            _unitOfWork = new UnitofWork(new FUCarRentingManagementContext());
+            _unitOfWork = unitOfWork;
         }
 
         public RentingTransaction AddRenting(RentingTransaction rentingTransaction)

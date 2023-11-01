@@ -14,12 +14,13 @@ namespace FlowerManagementWPF
         private readonly ICustomerService _customerService;
         private readonly IRentingTransactionService _transactionService;
 
-        public CustomerManagerWPF(int customerId, ICustomerService customerService)
+        public CustomerManagerWPF(int customerId, ICustomerService customerService, IRentingTransactionService transactionService)
         {
             InitializeComponent();
+
             this.customerId = customerId;
             _customerService = customerService;
-            _transactionService = new RentingTransactionService();
+            _transactionService = transactionService;
         }
 
         private void btnProfile_Click(object sender, RoutedEventArgs e)

@@ -13,7 +13,12 @@ namespace WebRazor.Pages.Suppiler
 {
     public class IndexModel : PageModel
     {
-        private readonly ISupplierService _supplierService = new SupplerService();
+        private readonly ISupplierService _supplierService;
+
+        public IndexModel(ISupplierService supplierService)
+        {
+            _supplierService = supplierService;
+        }
 
         public List<Supplier> Supplier { get;set; } = default!;
 

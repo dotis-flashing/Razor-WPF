@@ -3,8 +3,11 @@
 
 @{
     ViewData["Title"] = "Details";
-}
+    var role = HttpContext.Session.GetString("role");
 
+}
+@if (role == "admin")
+{
 <h1>Details</h1>
 
 <div>
@@ -77,3 +80,4 @@
     <a asp-page="./Edit" asp-route-id="@Model.CarInformation?.CarId">Edit</a> |
     <a asp-page="./Index">Back to List</a>
 </div>
+}

@@ -13,7 +13,12 @@ namespace WebRazor.Pages.Manufacture
 {
     public class DetailsModel : PageModel
     {
-        private readonly IManuFactureService _manuFactureService = new ManufactureService();
+        private readonly IManuFactureService _manuFactureService;
+
+        public DetailsModel(IManuFactureService manuFactureService)
+        {
+            _manuFactureService = manuFactureService;
+        }
 
         public Manufacturer Manufacturer { get; set; } = default!;
 

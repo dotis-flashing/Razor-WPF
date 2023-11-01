@@ -8,7 +8,12 @@ namespace WebRazor.Pages.Manufacture
 {
     public class CreateModel : PageModel
     {
-        private readonly IManuFactureService _manuFactureService = new ManufactureService();
+        private readonly IManuFactureService _manuFactureService;
+
+        public CreateModel(IManuFactureService manuFactureService)
+        {
+            _manuFactureService = manuFactureService;
+        }
 
         public IActionResult OnGet()
         {

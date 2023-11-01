@@ -9,9 +9,16 @@ namespace WebRazor.Pages.CarInfor
 {
     public class CreateModel : PageModel
     {
-        private readonly ICarService _carService = new CarServiceImpl();
-        private readonly IManuFactureService _manuFactureService = new ManufactureService();
-        private readonly ISupplierService _supplierService = new SupplerService();
+        private readonly ICarService _carService;
+        private readonly IManuFactureService _manuFactureService;
+        private readonly ISupplierService _supplierService;
+
+        public CreateModel(ICarService carService, IManuFactureService manuFactureService, ISupplierService supplierService)
+        {
+            _carService = carService;
+            _manuFactureService = manuFactureService;
+            _supplierService = supplierService;
+        }
 
         [BindProperty]
         public CarInformation CarInformation { get; set; } = default!;

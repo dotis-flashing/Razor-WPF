@@ -3,72 +3,78 @@
 
 @{
     ViewData["Title"] = "Index";
+    var role = HttpContext.Session.GetString("role");
+
 }
+@if (role == "admin")
+{
+    <h1>Manager Customer</h1>
 
-<h1>Manager Customer</h1>
-
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer[0].CustomerName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer[0].Telephone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer[0].Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer[0].CustomerBirthday)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer[0].CustomerStatus)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer[0].Password)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Customer)
-        {
+    <p>
+        <a asp-page="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Telephone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerBirthday)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerStatus)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Password)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.CustomerId">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.CustomerId">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.CustomerId">Delete</a>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Customer[0].CustomerName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Customer[0].Telephone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Customer[0].Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Customer[0].CustomerBirthday)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Customer[0].CustomerStatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Customer[0].Password)
+                </th>
+                <th></th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Customer)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telephone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerBirthday)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Password)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.CustomerId">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.CustomerId">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.CustomerId">Delete</a>
+                    </td>
+                </tr>
+            }
+            @if (!string.IsNullOrEmpty(ViewBag.Message))
+            {
+                <p class="alert alert-danger" role="alert">@ViewData["Message"]</p>
+            }
+        </tbody>
 
-    </tbody>
- 
+    </table>
+    <div>
+        <a href="/uirole" class="btn btn-primary">Back</a>
+    </div>
 
-</table>
-<div>
-    <a href="/uirole" class="btn btn-primary">Back</a>
-</div>
-
+}

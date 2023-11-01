@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using BusinessObjects.Entity;
-using Infrastructure.Service.Implement;
 using Infrastructure.Service;
 
 namespace WebRazor.Pages.Customer
 {
     public class DeleteModel : PageModel
     {
-        private readonly ICustomerService _customerService = new CustomerService();
+        private readonly ICustomerService _customerService;
+
+        public DeleteModel(ICustomerService customerService)
+        {
+            _customerService = customerService;
+        }
 
         [BindProperty]
         public BusinessObjects.Entity.Customer Customer { get; set; } = default!;
@@ -38,7 +37,8 @@ namespace WebRazor.Pages.Customer
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message.ToString());
+                ViewData["Message"] = ex.Message.ToString();
+               return Page();
             }
         }
     }

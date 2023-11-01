@@ -7,7 +7,12 @@ namespace WebRazor.Pages.Customer
 {
     public class CreateModel : PageModel
     {
-        private readonly ICustomerService _customerService = new CustomerService();
+        private readonly ICustomerService _customerService;
+
+        public CreateModel(ICustomerService customerService)
+        {
+            _customerService = customerService;
+        }
 
         public IActionResult OnGet()
         {
@@ -23,13 +28,15 @@ namespace WebRazor.Pages.Customer
         {
             try
             {
-                var customer =  _customerService.Register(Customer);
+                var customer = _customerService.Register(Customer);
                 Customer = customer;
                 return RedirectToPage("./Index");
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message.ToString());
+                ViewData["Message"] = ex.Message.ToString();
+                return Page();
+
             }
         }
     }

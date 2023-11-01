@@ -8,8 +8,12 @@ namespace WebRazor.Pages.CarInfor
 {
     public class DeleteModel : PageModel
     {
-        private readonly ICarService _carService = new CarServiceImpl();
+        private readonly ICarService _carService;
 
+        public DeleteModel(ICarService carService)
+        {
+            _carService = carService;
+        }
 
         [BindProperty]
         public CarInformation CarInformation { get; set; } = default!;

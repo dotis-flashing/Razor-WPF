@@ -14,9 +14,9 @@ namespace Infrastructure.Service.Implement
     {
         private readonly IUnitofWork _unitofWork;
 
-        public SupplerService()
+        public SupplerService(IUnitofWork unitofWork)
         {
-            _unitofWork = new UnitofWork(new FUCarRentingManagementContext());
+            _unitofWork = unitofWork;
         }
 
         public Supplier AddSupplier(Supplier supplier)

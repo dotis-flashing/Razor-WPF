@@ -1,7 +1,11 @@
 ﻿@page
 @model WebRazor.Pages.ProfileCustomer.Customer.ProfileCustomerModel
 @{
+    var role = HttpContext.Session.GetString("role");
+    var name = HttpContext.Session.GetString("customerId");
 }
+@if (role == "customer")
+{
 <h1>Edit</h1>
 
 <h4>Customer</h4>
@@ -49,3 +53,4 @@
     </div>
 
 </div>
+}

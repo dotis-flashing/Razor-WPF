@@ -17,7 +17,27 @@ namespace Repository.Repository.Imp
         {
         }
 
-        public List<Customer>GetCustomersALl()
+        public bool ExistEmail(string email)
+        {
+            var check = _context.Set<Customer>().FirstOrDefault(c => c.Email == email);
+            if (check != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool ExistPhone(string phone)
+        {
+            var check = _context.Set<Customer>().FirstOrDefault(c => c.Telephone == phone);
+            if (check != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public List<Customer> GetCustomersALl()
         {
             return _context.Set<Customer>().ToList();
         }

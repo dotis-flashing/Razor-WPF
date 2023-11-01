@@ -9,9 +9,9 @@ namespace Infrastructure.Service.Implement
     {
         private readonly IUnitofWork _unitOfWork;
 
-        public CustomerService()
+        public CustomerService(IUnitofWork unitOfWork)
         {
-            _unitOfWork = new UnitofWork(new FUCarRentingManagementContext());
+            _unitOfWork = unitOfWork;
         }
 
         public Customer CustomerLogin(string email, string password)
@@ -53,9 +53,20 @@ namespace Infrastructure.Service.Implement
                 findCustomerId.CustomerId = customer.CustomerId;
                 findCustomerId.CustomerName = customer.CustomerName;
                 findCustomerId.Email = customer.Email;
+                var checkemail = _unitOfWork.Customer.ExistEmail(findCustomerId.Email);
+                if (checkemail == true)
+                {
+                    throw new Exception("exist email");
+                }
                 findCustomerId.Password = customer.Password;
                 findCustomerId.Telephone = customer.Telephone;
+                var checkphone = _unitOfWork.Customer.ExistPhone(customer.Telephone);
+                if (checkphone == true)
+                {
+                    throw new Exception("exist phone");
+                }
                 findCustomerId.CustomerStatus = "ACTIVE";
+                findCustomerId.CustomerBirthday = customer.CustomerBirthday;
                 var customerUpdate = _unitOfWork.Customer.Update(findCustomerId);
                 _unitOfWork.Commit();
                 return customerUpdate;
@@ -70,6 +81,16 @@ namespace Infrastructure.Service.Implement
             if (addCustomer.Email.Equals("admin".ToLower()))
             {
                 throw new Exception("Email nay da co roi, khong duoc add nua");
+            }
+            var checkemail = _unitOfWork.Customer.ExistEmail(addCustomer.Email);
+            if (checkemail == true)
+            {
+                throw new Exception("exist email");
+            }
+            var checkphone = _unitOfWork.Customer.ExistPhone(addCustomer.Telephone);
+            if (checkphone == true)
+            {
+                throw new Exception("exist phone");
             }
             addCustomer.CustomerStatus = "ACTIVE";
             _unitOfWork.Commit();

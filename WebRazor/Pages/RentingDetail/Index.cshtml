@@ -4,64 +4,68 @@
 @{
     ViewData["Title"] = "Index";
     var name = HttpContext.Session.GetString("customerId");
+    var role = HttpContext.Session.GetString("role");
 
     var detailPage = "/RentingDetail/Details";
 }
+@if (role == "customer")
+{
+    <h1>RentingDetail</h1>
 
-<h1>RentingDetail</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.RentingDetail[0].StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RentingDetail[0].EndDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RentingDetail[0].Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RentingDetail[0].RentingDetailStatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RentingDetail[0].Car)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RentingDetail[0].RentingTransaction)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.RentingDetail)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RentingDetailStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Car.CarName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RentingTransaction.RentingTransationId)
+                    </td>
+                    <td>
+                        <a asp-page="@detailPage" asp-route-id="@item.RentingTransaction.RentingTransationId">Details</a> |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <a href="/uirole" class="btn btn-primary">Back</a>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.RentingDetail[0].StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RentingDetail[0].EndDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RentingDetail[0].Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RentingDetail[0].RentingDetailStatus)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RentingDetail[0].Car)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RentingDetail[0].RentingTransaction)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.RentingDetail) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RentingDetailStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Car.CarName)
-            </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.RentingTransaction.RentingTransationId)
-            </td>
-            <td>
-                    <a asp-page="@detailPage" asp-route-id="@item.RentingTransaction.RentingTransationId">Details</a> |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+    </table>
 }
-    </tbody>
-    <a href="/uirole" class="btn btn-primary">Back</a>
-
-</table>

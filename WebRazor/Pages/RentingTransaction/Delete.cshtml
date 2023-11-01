@@ -3,8 +3,11 @@
 
 @{
     ViewData["Title"] = "Delete";
-}
+    var role = HttpContext.Session.GetString("role");
 
+}
+@if (role == "customer")
+{
 <h1>Delete</h1>
 
 <h3>Are you sure you want to delete this?</h3>
@@ -44,3 +47,4 @@
         <a asp-page="./Index">Back to List</a>
     </form>
 </div>
+}

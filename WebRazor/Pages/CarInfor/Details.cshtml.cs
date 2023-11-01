@@ -13,8 +13,12 @@ namespace WebRazor.Pages.CarInfor
 {
     public class DetailsModel : PageModel
     {
-        private readonly ICarService _carService = new CarServiceImpl();
+        private readonly ICarService _carService;
 
+        public DetailsModel(ICarService carService)
+        {
+            _carService = carService;
+        }
 
         public CarInformation CarInformation { get; set; } = default!;
 

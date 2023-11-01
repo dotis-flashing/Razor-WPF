@@ -6,11 +6,11 @@ namespace WebRazor.Pages.RentingDetail
 {
     public class IndexModel : PageModel
     {
-        private readonly IRentingDetailService rentingDetailService;
+        private readonly IRentingDetailService _rentingDetailService;
 
         public IndexModel(IRentingDetailService rentingDetailService)
         {
-            this.rentingDetailService = rentingDetailService;
+            _rentingDetailService = rentingDetailService;
         }
 
         public List<BusinessObjects.Entity.RentingDetail> RentingDetail { get; set; } = default!;
@@ -24,7 +24,7 @@ namespace WebRazor.Pages.RentingDetail
                 if (customer != null)
                 {
                     var customerId = int.Parse(customer);
-                    RentingDetail = rentingDetailService.GetListRentingByCustomerId(id);
+                    RentingDetail = _rentingDetailService.GetListRentingByCustomerId(id);
                 }
             }
             catch (Exception ex)

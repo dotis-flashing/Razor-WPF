@@ -7,7 +7,12 @@ namespace WebRazor.Pages.Customer
 {
     public class IndexModel : PageModel
     {
-        private readonly ICustomerService _customerService = new CustomerService();
+        private readonly ICustomerService _customerService;
+
+        public IndexModel(ICustomerService customerService)
+        {
+            _customerService = customerService;
+        }
 
         public List<BusinessObjects.Entity.Customer> Customer { get; set; } = default!;
 
@@ -21,7 +26,8 @@ namespace WebRazor.Pages.Customer
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message.ToString());
+                ViewData["Message"] = ex.Message.ToString();
+                Page();
             }
         }
     }
